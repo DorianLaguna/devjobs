@@ -8,7 +8,7 @@
         id="titulo" 
         class="block w-full" 
         type="text" 
-        name="titulo" 
+        wire:model="titulo" 
         :value="old('titulo')" 
         autocomplete="username" 
         placeholder="Titulo de la Vacante"
@@ -24,8 +24,11 @@
         for="salario" 
         :value="__('Salario')" />
 
-        <select name="salario" id="salario" class="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-            
+        <select wire:model="salario" id="salario" class="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+            <option>-- Selecione --</option>
+            @foreach ($salarios as $salario)
+                <option value="{{$salario->id}}">{{$salario->salario}}</option>
+            @endforeach
         </select>
         
         <x-input-error 
@@ -38,8 +41,11 @@
         for="categoria" 
         :value="__('Categoria')" />
 
-        <select name="categoria" id="categoria" class="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-            
+        <select wire:model="categoria" id="categoria" class="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+            <option>-- Selecione --</option>
+            @foreach ($categorias as $categoria)
+                <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
+            @endforeach
         </select>
         
         <x-input-error 
