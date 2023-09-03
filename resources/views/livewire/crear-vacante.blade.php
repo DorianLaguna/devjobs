@@ -1,4 +1,4 @@
-<form class="md:w-1/2 space-y-4" >
+<form class="md:w-1/2 space-y-4" wire:submit='crearVacante'>
     <div>
         <x-input-label 
         for="titulo" 
@@ -10,13 +10,13 @@
         type="text" 
         wire:model="titulo" 
         :value="old('titulo')" 
-        autocomplete="username" 
         placeholder="Titulo de la Vacante"
         />
         
-        <x-input-error 
-        :messages="$errors->get('titulo')" 
-        class="mt-2" />
+        @error('titulo')
+            <p>Hay error</p>
+        @enderror
+        
     </div>
 
     <div>
@@ -25,15 +25,14 @@
         :value="__('Salario')" />
 
         <select wire:model="salario" id="salario" class="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-            <option>-- Selecione --</option>
+            <option>-- Seleccione --</option>
             @foreach ($salarios as $salario)
                 <option value="{{$salario->id}}">{{$salario->salario}}</option>
             @endforeach
         </select>
-        
-        <x-input-error 
-        :messages="$errors->get('salario')" 
-        class="mt-2" />
+        @error('salario')
+            {{$message}}
+        @enderror
     </div>
 
     <div>
@@ -47,10 +46,6 @@
                 <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
             @endforeach
         </select>
-        
-        <x-input-error 
-        :messages="$errors->get('categoria')" 
-        class="mt-2" />
     </div>
 
     <div>
@@ -62,15 +57,14 @@
         id="empresa" 
         class="block w-full" 
         type="text" 
-        name="empresa" 
+        wire:model="empresa" 
         :value="old('empresa')" 
         autocomplete="username" 
         placeholder="Nombre de la empresa"
         />
-        
-        <x-input-error 
-        :messages="$errors->get('empresa')" 
-        class="mt-2" />
+        @error('empresa')
+            {{$message}}
+        @enderror
     </div>
 
     <div>
@@ -82,14 +76,10 @@
         id="ultimo_dia" 
         class="block w-full" 
         type="date" 
-        name="ultimo_dia" 
+        wire:model="ultimo_dia" 
         :value="old('ultimo_dia')" 
         autocomplete="username" 
         />
-        
-        <x-input-error 
-        :messages="$errors->get('ultimo_dia')" 
-        class="mt-2" />
     </div>
 
     <div>
@@ -97,13 +87,9 @@
         for="descripcion" 
         :value="__('Descripcion del puesto')" />
 
-        <textarea name="descripcion" id="" cols="30" rows="10" placeholder="Descripcion general del puesto, experiencia" class="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm h-72">
+        <textarea wire:model="descripcion" id="" cols="30" rows="10" placeholder="Descripcion general del puesto, experiencia" class="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm h-72">
 
         </textarea>
-        
-        <x-input-error 
-        :messages="$errors->get('ultimo_dia')" 
-        class="mt-2" />
     </div>
 
     <div>
@@ -115,7 +101,7 @@
         id="imagen" 
         class="block w-full" 
         type="file" 
-        name="imagen" 
+        wire:model="imagen" 
         :value="old('imagen')" 
         autocomplete="username" 
         />
