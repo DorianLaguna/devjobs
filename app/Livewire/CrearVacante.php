@@ -20,11 +20,11 @@ class CrearVacante extends Component
     protected $rules = [
         'titulo' => 'required|string',
         'salario' => 'required',
-        'categoria' => 'required',
-        'empresa' => 'required',
-        'ultimo_dia' => 'required',
-        'descripcion' => 'required',
-        'imagen' => 'required'
+        // 'categoria' => 'required',
+        // 'empresa' => 'required',
+        // 'ultimo_dia' => 'required',
+        // 'descripcion' => 'required',
+        // 'imagen' => 'required',
     ];
 
     public function crearVacante(){

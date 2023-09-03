@@ -1,4 +1,4 @@
-<form class="md:w-1/2 space-y-4" wire:submit='crearVacante'>
+<form class="md:w-1/2 space-y-4" wire:submit.prevent='crearVacante'>
     <div>
         <x-input-label 
         for="titulo" 
